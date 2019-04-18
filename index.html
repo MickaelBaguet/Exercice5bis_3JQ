@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <title>Exercice 5</title>
+</head>
+<body>
+  <div class="container-fluid text-center">
+    <div class="jumbotron jumbotron-fluid">
+      <div class="container">
+        <h1 class="display-3">Exercice 5 - JQuery</h1>
+        <h3>Partie 2</h3>
+        <p class="lead">Changement bordure sur focus</p>
+      </div>
+    </div>
+    <form>
+      <label for="lastName">Nom : </label><input type="text" name="lastName" id="lastName" />
+      <label for="firstName">Prénom : </label><input type="text" name="firstName" id="firstName" />
+      <button type="button" name="button">Envoyer</button>
+    </form>
+  </div>
+  <script src="assets\js\jquery-3.3.1.min.js"></script>
+  <script>
+    // Fonction modifiant la couleur du border en fonction du focus
+    // Si on a le focus: vert
+    // Si on perd le focus: rouge
+    $(document).ready(function(){
+      $("input").focus(function(){;
+        $(this).css("border", "1px solid green");
+      });
+      $("input").blur(function(){;
+        $(this).css("border", "1px solid red");
+      });
+    });
+  </script>
+</body>
+</html>
