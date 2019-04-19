@@ -1,39 +1,98 @@
 <!DOCTYPE html>
-<html lang="fr" dir="ltr">
+<html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/style.css">
-  <title>Exercice 5</title>
+  <title>Exercice 5 - Div</title>
+  <style type="text/css">
+    .box{
+      width: 20px;
+      height: 20px;
+      position: relative;
+      margin: 50px auto 0;
+      background: blue;
+    }
+  </style>
 </head>
 <body>
   <div class="container-fluid text-center">
     <div class="jumbotron jumbotron-fluid">
       <div class="container">
         <h1 class="display-3">Exercice 5 - JQuery</h1>
-        <h3>Partie 2</h3>
-        <p class="lead">Changement bordure sur focus</p>
+        <h3>Partie 3</h3>
+        <p class="lead">Déplacement d'un cube grace au clavier</p>
+        <span>Version avec manipulation d'un div</span>
       </div>
     </div>
-    <form>
-      <label for="lastName">Nom : </label><input type="text" name="lastName" id="lastName" />
-      <label for="firstName">Prénom : </label><input type="text" name="firstName" id="firstName" />
-      <button type="button" name="button">Envoyer</button>
-    </form>
+    <div class="box"></div>
   </div>
   <script src="assets\js\jquery-3.3.1.min.js"></script>
-  <script>
-    // Fonction modifiant la couleur du border en fonction du focus
-    // Si on a le focus: vert
-    // Si on perd le focus: rouge
-    $(document).ready(function(){
-      $("input").focus(function(){;
-        $(this).css("border", "1px solid green");
-      });
-      $("input").blur(function(){;
-        $(this).css("border", "1px solid red");
-      });
-    });
+  <script type="text/javascript">
+
+  $(document).keydown(function(e){
+
+      // ATTENTION
+      // Ne pas oublier que la pos (0, 0) se trouve en haut à gauche
+      // ATTENTION
+
+      // Variables avec la pos de la box par rapport au top/left
+      var topBox = $(".box").offset().top;
+      var leftBox = $(".box").offset().left;
+      // e.which retourne la touche appuyée
+      switch (e.which){
+      case 37:    //Gauche
+        // Si tout à gauche
+        if (leftBox < 0)
+        {
+          // On set sa pos gauche à droite
+          $(".box").offset({top:topBox, left:1350});
+        }
+        else
+        {
+          // Sinon elle se déplace
+          $(".box").finish().animate({
+              left: "-=10px"
+          });
+        }
+        break;
+      case 38:    //Haut
+      // Si tout en haut
+        if (topBox < 0)
+        {
+          // On la mets en bas
+          $(".box").offset({top:560, left:leftBox});
+        }
+        else
+        {
+          $(".box").finish().animate({
+              top: "-=10px"
+          });
+        }
+        break;
+      case 39:    //Droite
+        // Si tout à droite
+        if (leftBox > 1340) {
+          // On la mets à gauche
+          $(".box").offset({top:topBox, left:0});
+        } else {
+          $(".box").finish().animate({
+              left: "+=10px"
+          });
+        }
+        break;
+      case 40:    //Bas
+        // Si tout en bas
+        if (topBox > 560){
+          // On la mets en haut
+          $(".box").offset({top:0, left:leftBox});
+        } else {
+          $(".box").finish().animate({
+              top: "+=10px"
+          });
+        }
+        break;
+      }
+  });
   </script>
 </body>
 </html>
