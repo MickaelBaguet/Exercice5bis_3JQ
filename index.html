@@ -38,11 +38,16 @@
       // Variables avec la pos de la box par rapport au top/left
       var topBox = $(".box").offset().top;
       var leftBox = $(".box").offset().left;
+      // Largeur et longueur du document non pris car plus grand que la fenètre
+      var largeur = $(document).width();  //1366
+      var longeur = $(document).height();   //592
+      console.log(largeur);
+      console.log(longeur);
       // e.which retourne la touche appuyée
       switch (e.which){
       case 37:    //Gauche
         // Si tout à gauche
-        if (leftBox < 0)
+        if (leftBox -10 < 0)
         {
           // On set sa pos gauche à droite
           $(".box").offset({top:topBox, left:1350});
@@ -57,7 +62,7 @@
         break;
       case 38:    //Haut
       // Si tout en haut
-        if (topBox < 0)
+        if (topBox -10 < 0)
         {
           // On la mets en bas
           $(".box").offset({top:560, left:leftBox});
@@ -71,7 +76,7 @@
         break;
       case 39:    //Droite
         // Si tout à droite
-        if (leftBox > 1340) {
+        if (leftBox +10 > 1340) {
           // On la mets à gauche
           $(".box").offset({top:topBox, left:0});
         } else {
@@ -82,7 +87,7 @@
         break;
       case 40:    //Bas
         // Si tout en bas
-        if (topBox > 560){
+        if (topBox +10 > 560){
           // On la mets en haut
           $(".box").offset({top:0, left:leftBox});
         } else {
