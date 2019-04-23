@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -29,6 +29,10 @@
   <script src="assets\js\jquery-3.3.1.min.js"></script>
   <script type="text/javascript">
 
+  // Largeur et longueur du document
+  var largeur = $(document).width();
+  var longeur = $(document).height();
+
   $(document).keydown(function(e){
 
       // ATTENTION
@@ -38,9 +42,6 @@
       // Variables avec la pos de la box par rapport au top/left
       var topBox = $(".box").offset().top;
       var leftBox = $(".box").offset().left;
-      // Largeur et longueur du document non pris car plus grand que la fenètre
-      var largeur = $(document).width();  //1366
-      var longeur = $(document).height();   //592
       console.log(largeur);
       console.log(longeur);
       // e.which retourne la touche appuyée
@@ -49,8 +50,8 @@
         // Si tout à gauche
         if (leftBox -10 < 0)
         {
-          // On set sa pos gauche à droite
-          $(".box").offset({top:topBox, left:1350});
+          // On set sa pos gauche à droite (20 par rapport à la taille du cube)
+          $(".box").offset({top:topBox, left:largeur-20});
         }
         else
         {
@@ -64,8 +65,8 @@
       // Si tout en haut
         if (topBox -10 < 0)
         {
-          // On la mets en bas
-          $(".box").offset({top:560, left:leftBox});
+          // On la mets en bas (20 par rapport à la taille du cube)
+          $(".box").offset({top:longeur-20, left:leftBox});
         }
         else
         {
@@ -75,8 +76,8 @@
         }
         break;
       case 39:    //Droite
-        // Si tout à droite
-        if (leftBox +10 > 1340) {
+        // Si tout à droite (20 par rapport à la taille du cube)
+        if (leftBox +10 > largeur -20) {
           // On la mets à gauche
           $(".box").offset({top:topBox, left:0});
         } else {
@@ -86,8 +87,8 @@
         }
         break;
       case 40:    //Bas
-        // Si tout en bas
-        if (topBox +10 > 560){
+        // Si tout en bas (20 par rapport à la taille du cube)
+        if (topBox +10 > longeur-20){
           // On la mets en haut
           $(".box").offset({top:0, left:leftBox});
         } else {
